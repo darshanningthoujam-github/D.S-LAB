@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+  struct studentdt
+  {
+    int stuid;
+    int stumarks;
+    int age;
+  }S1;
+  printf("enter the details of student\n");
+  scanf("%d%d%d",&S1.stuid, &S1.stumarks, &S1.age);
+  printf("student ID:%d\nstudent marks:%d\nstudent age:%d\n", S1.stuid, S1.stumarks, S1.age);
+
+  while(S1.stumarks>=0&&S1.stumarks<=100)
+  {
+    if(S1.age>20&&S1.stumarks>=65)
+    {
+    printf("student is valid");
+    break;
+    }
+    else
+    {
+    printf("not valid");
+    break;
+    }
+  }
+ getch();
+}
