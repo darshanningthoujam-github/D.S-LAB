@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<stdlib.h>
+void create();
+void delete(int);
+void display();
+void insertbefore();
+struct node
+{
+int data;
+struct node *next;
+};
+struct node *head=NULL;
+
+int main()
+{
+int c, element;
+char ch;
+do
+ {
+ printf("Enter Your Choice:\n");
+ printf("1) to create\n 2) for deletion\n 3) for display\n 4) for inserting in front of the list\n ");
+ scanf("%d",&c);
+ switch(c)
+  {
+   case 1:create(); break;
+   case 2:printf("enter element to be deleted\n");
+          scanf("%d",&element);
+          delete(element);
+          break;
+   case 3:display(); break;
+   case 4:insertbefore(); break;
+   default: printf("Invalid choice");
+  }
+  printf("Do you want to continue\n");
+  fflush(stdin);
+  scanf("%c",&ch);
+ }while(ch=='y'||ch=='Y');
+}
+
+void create()
+{
+struct node *newnode, *temp;
+int item;
+newnode=(struct node *)malloc(sizeof(struct node));
+printf("enter element :\n");
+scanf("%d", &item);
+newnode->data=item;
+if(head==NULL)
+ {
+  newnode->next=NULL;
+  head=newnode;
+  printf("node created\n");
+ }
+else
+ {
+ temp=head;
+  while(newnode->next!=NULL)
+   {
+    temp=temp->next;
+   }
+   temp->next=newnode;
+   newnode->next=NULL;
+   printf("node created\n");
+ }
+}
+
+void display()
+{
+struct node *ptr=NULL;
+ptr=head;
+ if(ptr==NULL)
+ {
+ printf("List Empty\n");
+ }
+ else
+ {
+  while(ptr!=NULL)
+  {
+   printf("%d\n",ptr->data);
+   ptr=ptr->next;
+  }
+ }
+}
+
+void delete(int ele)
+{
+struct node *temp, *del=NULL;
+ if(head==NULL)
+ {
+ printf("nothing to delete\n");
+ return;
+ }
+ temp=head;
+ if(head->data=ele)
+  {
+  head=head->next;
+  return;
+  }
+ while(temp->next!=NULL)
+  {
+   if(temp->next->data==ele)
+   {
+    del=temp->next;
+    if(del->next==NULL)
+    temp->next=NULL;
+    else
+    temp->next=del->next;
+   }
+   else
+   temp=temp->next;
+  }
+ if(del==NULL)
+ {
+ printf("Element not found in the list\n");
+ return;
+ }
+}
+
+void insertbefore()
+{
+struct node *newnode;
+int ele;
+printf("Enter the element\n");
+scanf("%d", &ele);
+newnode=(struct node*)malloc(sizeof(struct node));
+newnode->data=ele;
+newnode->next=head;
+head=newnode;
+
+}
+
+
+
+
